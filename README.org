@@ -1,0 +1,11 @@
+#+TITLE: Shucks! README
+#+DATE: <2014-10-21 Tue>
+#+AUTHOR: William Clifford
+#+EMAIL: wobh@yahoo.com
+#+DESCRIPTION: Shucks project readme
+#+KEYWORDS: bash, sh, zsh
+
+* Introduction
+
+Shucks! is a scratch project of shell scripting experiments. Shucks! is not
+intended for use by persons who are not me.
