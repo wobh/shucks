@@ -1,0 +1,6 @@
+# -*- mode: sh; -*-
+# $HOME/.dotenv
+
+# Environment for dotsync
+
+DOTKEEP="${HOME}/dotfiles"

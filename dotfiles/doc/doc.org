@@ -1,0 +1,48 @@
+* bin
+
+** Decision tables key
+
+- 'X' :: present, true
+- ' ' :: absent, false
+- '-' :: whatever, maybe
+
+** dotsend
+*** Decision table for ~dotsend~
+
+| inputs            |   |   |   |   |   |
+|-------------------+---+---+---+---+---|
+| opt help          |   |   |   |   | X |
+| env DOTHOME path  | X | - | X | - | - |
+| opt DOTPATH path  |   | X |   | X | - |
+| arg USRFILE file  |   |   | X | X | - |
+|-------------------+---+---+---+---+---|
+| actions           |   |   |   |   |   |
+|-------------------+---+---+---+---+---|
+| send file DOTHOME |   |   | X |   | - |
+| list path DOTHOME | X |   | X |   | - |
+| send file DOTPATH |   |   |   | X | - |
+| list path DOTPATH |   | X |   | X | - |
+| show help         |   |   |   |   | X |
+
+** dotsync
+*** Decision table for ~dotsync~
+
+| inputs               |   |   |   |   |   |
+|----------------------+---+---+---+---+---|
+| opt help             |   |   |   |   | X |
+| env USRHOME path     | X | - | X | - | - |
+| env DOTHOME path     | X | X | - | - | - |
+| opt USRPATH path     |   | X |   | X | - |
+| opt DOTPATH path     |   |   | X | X | - |
+|----------------------+---+---+---+---+---|
+| actions              |   |   |   |   |   |
+|----------------------+---+---+---+---+---|
+| sync USRHOME DOTHOME | X |   |   |   | - |
+| sync USRPATH DOTHOME |   | X |   |   | - |
+| sync USRHOME DOTPATH |   |   | X |   | - |
+| sync USRPATH DOTPATH |   |   |   | X | - |
+| list USRHOME DOTPATH |   |   | X |   | - |
+| list USRPATH DOTPATH |   |   |   | X | - |
+| show help            |   |   |   |   | X |
+
+

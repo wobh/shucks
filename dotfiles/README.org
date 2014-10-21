@@ -1,0 +1,121 @@
+#+TITLE: Shucks! dotfiles README
+#+DATE: <2014-10-21 Tue>
+#+AUTHOR: William Clifford
+#+EMAIL: wobh@yahoo.com
+#+DESCRIPTION:
+#+KEYWORDS:
+
+* Introduction
+
+Everyone comes up with their own way to try to preserve and reproduce
+the environment settings. Here's my attempt to do that. 
+
+As with all projects in this repo, it's provisional and
+experimental. It's only use is a cautionary example.
+
+* Design considerations
+
+The home directory is the main place where my configurations are used
+and developed. They are effectively iterated over, tested, and
+expanded every day. I want a system that synchronizes files in my home
+directory with an archive under source control.
+
+* dotfile management
+
+The system is primitive, relying on just two shell scripts, and two
+configuration files, and one folder.
+
+** global variables
+
+*** =$DOTKEEP=
+
+=$DOTKEEP= specifies the location of a folder where dotfiles are
+archived. It is defined in =~/.dotenvs= and defaults to =~/dotfiles=.
+
+** configuration
+
+*** =etc/dotenvs=
+
+
+Installed as =~/.dotenvs=, it defines =DOTKEEP=, the sole global
+variable for this project. It is sourced by the two scripts.
+
+*** =etc/dotlist=
+
+Installed as =~/.dotlist=, it is a manifest of files in the =$DOTKEEP=
+archive. It is used by =dotsync= to select only those files which have
+to be managed. It is updated by =dotsend=.
+
+** scripts
+
+*** =Makefile=
+
+Provides basic installation and uninstallation targets for =make=. As
+mentioned earlier, this software is not meant for wider use, it's for
+practice. This =Makefile= is likewise, for practice.
+
+*** =src/dotsend.sh=
+
+Installed as =~/bin/dotsend=, it sends a copy of one or more given
+files into the =$DOTKEEP= archive, and updates =~/.dotlist= with the
+=$DOTKEEP= directory listing. It has the following alternate uses:
+
+- synchronize a single file or a selection of files
+- with =-f=: creates =$DOTKEEP= or =~/.dotlist= if they don't exist
+- with =-r=: refresh =~/.dotlist= with current =$DOTKEEP=
+- with =-t=: specify an alternate location
+
+**** Usage notes
+
+- options may not be given no more than once
+- options =-f= and =-r= cannot be used together
+- =-r= does not take file arguments, although it should work with =-t=
+- otherwise, with no arguments, =dotsend= prints a help message
+
+**** Example uses
+
+- =~$ dotsend .bashrc=
+- =~$ dotsend -r=
+- =~% dotsend -t dottest .zshrc .zprofile=
+
+*** =src/dotsync.sh=
+
+Installed as =~/bin/dotsync=, it synchronizes a given directory with
+=$DOTKEEP= or other folder specified with =-t= folder. The folder
+argument must have a =.dotenvs= in it.
+
+**** Usage notes
+
+- option may be given no more than once
+- with no arguments, =dotsync= prints a help message
+
+**** Example uses
+
+- =~$ dotsync .=
+= =~/bin$ dotsync ~=
+= =~/foo$ dotsync -t ~/dottest .=
+
+* Known bugs and faults
+
+** duplicated error texts in scripts
+
+I couldn't think of a good way to share the error texts, while
+focusing on a basic install, so they're copy-pasted between the two
+scripts.
+
+** =dotsend= is slow
+
+=dotsend= uses =find= to verify that any file you send exists
+somewhere below the current directory. It uses =find= again to update
+=~/.dotlist=.
+
+** =dotsync= slow, worse, doesn't work
+
+=dotsync= uses =rsync= even for making updates to local =$DOTKEEP=
+archives, and =rsync= seems to have to think more when having to read
+the =~/.dotlist=.
+
+But more serious than that, dotsync doesn't update =$DOTKEEP=. I think
+there's a problem with the =.dotlist= when created by =find=.
+
+** 
