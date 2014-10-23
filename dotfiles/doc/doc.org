@@ -8,28 +8,30 @@
 * TODO =alt= Alternate implementations
 
 The main problem is this is intended to be installed in a user's home
-directory. There's only a few common places to share data across
-scripts.
+directory. We assume the user has a =~/bin= (a common but not
+necessary true assumption). There's only a few standard accepted ways
+share data across scripts for this sort of thing.
 
-- duplicate in the script itself. The current solution.
+- duplicate in the source itself. The current solution.
 - setup dotfile for it. ".dottext"
 - setup a dot folder (it could hold everything)
   - ~/
     - .dotfiles/
       - dotenvs
-      - dottext
       - dotlist
-      - dotdata/
+      - dottext
+      - dotkeep/
 - I'm even tempted to do something like this:
   - ~/
     - .dotfiles/
       - etc/
 	- dotenvs
-	- dotlist
       - lib/
 	- dottext
       - var/
-	- dotdata/
+	- dotlist
+      - srv
+	- dotkeep/
 
 ** TODO =shm4=
 Maybe use m4.
@@ -89,11 +91,18 @@ testing a control flow.
 | list USRHOME DOTPATH |   |   | X |   |   |
 | list USRPATH DOTPATH |   |   |   | X |   |
 | show help            |   |   |   |   | X |
-* TODO =etc= Settings and configurations
 * TODO =doc= Documentation
 this document
-* TODO =usr= my dotfiles
-my dotfiles
-* TODO =var= Various 
+* TODO =etc= Settings and configurations
+** DONE =dotenvs= default settings
+
+** DONE =dotlist= template dotlist
+* TODO =lib= shared code
+- likely the message texts
+- possibly other functions that turn out to be common.
+* TODO =srv= Service data
+** TODO =dotkeep=
+- my dofiles
+* TODO =var= Various state
 ** TODO =test=
 *** TODO research how to do shell-script testing
