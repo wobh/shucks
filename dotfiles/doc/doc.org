@@ -1,48 +1,99 @@
-* bin
+#+TITLE:     Dotfiles documentation
+#+AUTHOR:    William Clifford
+#+EMAIL:     wobh@yahoo.com
+#+DATE:      <2014-10-22 Wed>
 
+* DONE =README=
+* TODO =Makefile=
+* TODO =alt= Alternate implementations
+
+The main problem is this is intended to be installed in a user's home
+directory. There's only a few common places to share data across
+scripts.
+
+- duplicate in the script itself. The current solution.
+- setup dotfile for it. ".dottext"
+- setup a dot folder (it could hold everything)
+  - ~/
+    - .dotfiles/
+      - dotenvs
+      - dottext
+      - dotlist
+      - dotdata/
+- I'm even tempted to do something like this:
+  - ~/
+    - .dotfiles/
+      - etc/
+	- dotenvs
+	- dotlist
+      - lib/
+	- dottext
+      - var/
+	- dotdata/
+
+** TODO =shm4=
+Maybe use m4.
+
+1. setup make target
+2. m4 process inserting message texts and other common elements to scripts
+
+** TODO =ruby=
+- implement in Ruby
+- maybe use thor
+- still need to figure out reasonable way to share data across scripts.
+** TODO =lisp=
+I should do this, if for no other reason just to clarify option
+testing a control flow.
+* TODO =bin= Executables
 ** Decision tables key
 
 - 'X' :: present, true
 - ' ' :: absent, false
 - '-' :: whatever, maybe
 
-** dotsend
+** TODO =dotsend.sh=
 *** Decision table for ~dotsend~
 
-| inputs            |   |   |   |   |   |
-|-------------------+---+---+---+---+---|
-| opt help          |   |   |   |   | X |
-| env DOTHOME path  | X | - | X | - | - |
-| opt DOTPATH path  |   | X |   | X | - |
-| arg USRFILE file  |   |   | X | X | - |
-|-------------------+---+---+---+---+---|
-| actions           |   |   |   |   |   |
-|-------------------+---+---+---+---+---|
-| send file DOTHOME |   |   | X |   | - |
-| list path DOTHOME | X |   | X |   | - |
-| send file DOTPATH |   |   |   | X | - |
-| list path DOTPATH |   | X |   | X | - |
-| show help         |   |   |   |   | X |
+| inputs            |   |   |   |   |   |   |
+|-------------------+---+---+---+---+---+---|
+| none              |   |   |   |   |   | X |
+| env DOTKEEP path  | - | X | - | X | - | - |
+| opt DOTPATH path  |   |   | X |   | X |   |
+| opt REFRESH       |   | X |   |   |   |   |
+| arg USRFILE file  |   |   |   | X | X |   |
+|-------------------+---+---+---+---+---+---|
+| actions           |   |   |   |   |   |   |
+|-------------------+---+---+---+---+---+---|
+| send file DOTKEEP |   |   |   | X |   |   |
+| list path DOTKEEP |   | X |   | X |   |   |
+| send file DOTPATH |   |   |   |   | X |   |
+| list path DOTPATH |   |   | X |   | X |   |
+| show help         | X |   |   |   |   | X |
 
-** dotsync
+** TODO =dotsync.sh=
 *** Decision table for ~dotsync~
 
 | inputs               |   |   |   |   |   |
 |----------------------+---+---+---+---+---|
-| opt help             |   |   |   |   | X |
-| env USRHOME path     | X | - | X | - | - |
-| env DOTHOME path     | X | X | - | - | - |
-| opt USRPATH path     |   | X |   | X | - |
-| opt DOTPATH path     |   |   | X | X | - |
+| none                 |   |   |   |   | X |
+| env DOTKEEP path     | X | X | - | - | - |
+| opt USRPATH path     |   | X |   | X |   |
+| opt DOTPATH path     |   |   | X | X |   |
 |----------------------+---+---+---+---+---|
 | actions              |   |   |   |   |   |
 |----------------------+---+---+---+---+---|
-| sync USRHOME DOTHOME | X |   |   |   | - |
-| sync USRPATH DOTHOME |   | X |   |   | - |
-| sync USRHOME DOTPATH |   |   | X |   | - |
-| sync USRPATH DOTPATH |   |   |   | X | - |
-| list USRHOME DOTPATH |   |   | X |   | - |
-| list USRPATH DOTPATH |   |   |   | X | - |
+| sync USRHOME DOTHOME | X |   |   |   |   |
+| sync USRPATH DOTHOME |   | X |   |   |   |
+| sync USRHOME DOTPATH |   |   | X |   |   |
+| sync USRPATH DOTPATH |   |   |   | X |   |
+| list USRHOME DOTPATH |   |   | X |   |   |
+| list USRPATH DOTPATH |   |   |   | X |   |
 | show help            |   |   |   |   | X |
-
-
+* TODO =etc= Settings and configurations
+* TODO =doc= Documentation
+this document
+* TODO =usr= my dotfiles
+my dotfiles
+* TODO =var= Various 
+** TODO =test=
+*** TODO research how to do shell-script testing
