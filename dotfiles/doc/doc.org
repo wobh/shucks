@@ -46,7 +46,9 @@ Maybe use m4.
 ** TODO =lisp=
 I should do this, if for no other reason just to clarify option
 testing a control flow.
-* TODO =bin= Executables
+* TODO =cmd= Executables
+
+** TODO fix decision tables
 ** Decision tables key
 
 - 'X' :: present, true
@@ -93,6 +95,8 @@ testing a control flow.
 | show help            |   |   |   |   | X |
 * TODO =doc= Documentation
 this document
+
+- add a `plan.org' for planning?
 * TODO =etc= Settings and configurations
 ** DONE =dotenvs= default settings
 
@@ -102,7 +106,7 @@ this document
 - possibly other functions that turn out to be common.
 * TODO =srv= Service data
 ** TODO =dotkeep=
-- my dofiles
+- my dotfiles
 * TODO =var= Various state
 ** TODO =test=
 *** TODO research how to do shell-script testing

@@ -2,7 +2,7 @@
 
 .PHONY: install clean
 
-srcbin := ./bin
+srcbin := ./cmd
 srcetc := ./etc
 srcext := sh
 

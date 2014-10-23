@@ -54,7 +54,7 @@ Provides basic installation and uninstallation targets for =make=. As
 mentioned earlier, this software is not meant for wider use, it's for
 practice. This =Makefile= is likewise, for practice.
 
-*** =src/dotsend.sh=
+*** =cmd/dotsend.sh=
 
 Installed as =~/bin/dotsend=, it sends a copy of one or more given
 files into the =$DOTKEEP= archive, and updates =~/.dotlist= with the
@@ -78,7 +78,7 @@ files into the =$DOTKEEP= archive, and updates =~/.dotlist= with the
 - =~$ dotsend -r=
 - =~% dotsend -t dottest .zshrc .zprofile=
 
-*** =src/dotsync.sh=
+*** =cmd/dotsync.sh=
 
 Installed as =~/bin/dotsync=, it synchronizes a given directory with
 =$DOTKEEP= or other folder specified with =-t= folder. The folder
@@ -109,13 +109,10 @@ scripts.
 somewhere below the current directory. It uses =find= again to update
 =~/.dotlist=.
 
-** =dotsync= slow, worse, doesn't work
+** =dotsync= slow
 
 =dotsync= uses =rsync= even for making updates to local =$DOTKEEP=
 archives, and =rsync= seems to have to think more when having to read
 the =~/.dotlist=.
 
-But more serious than that, dotsync doesn't update =$DOTKEEP=. I think
-there's a problem with the =.dotlist= when created by =find=.
-
-** 
+As of right now, =dotsync= seems to work!
