@@ -1,0 +1,4 @@
+# Setup emacs environment
+
+export ALTERNATE_EDITOR=""
+export EDITOR="emacsclient -t -a=$ALTERNATE_EDITOR"

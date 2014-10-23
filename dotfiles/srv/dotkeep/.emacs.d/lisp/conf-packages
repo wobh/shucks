@@ -1,0 +1,72 @@
+;;; wc-init-packages.el --- configure Emacs packages
+
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (package-initialize)
+  (add-to-list 'package-archives 
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;; (add-to-list 'package-archives
+  ;;              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+  (require 'init-packgages))
+
+(defgroup init-packages () 
+  "Customization group for `init-packages'"
+  :prefix "init-packages"
+  :group 'environment
+  :require 'init-packages)
+
+(defcustom init-packages-install
+  ()
+  "List of User defined packages to be installed or required"
+  :type 'list
+  :require 'init-packages
+  :risky t
+  :group 'init-packages
+  )
+
+;;;###autoload
+(defun wc-init-packages-install-add-to (name &optional version)
+  (push (if package-version (cons package-name version) name)
+        init-packages-install))
+
+;;;###autoload
+(defun wc-init-packages-list (&optional packages-list)
+  (unless packages-list
+    (setq packages-list init-packages-install))
+  (mapcar (lambda (pv)
+            (if (consp pv) (car pv) pv))
+          (packages-list)))
+
+;;;###autoload
+(defun wc-init-packages-uninstalled (&optional packages-list)
+  (unless packages-list
+    (setq packages-list wc-initpackages-install))
+  (mapcar (lambda (pv)
+            (apply 'package-installed-p 
+                   (if (consp pv) (list (car pv) (cdr pv)) pv)))
+          packages-list))
+
+;;;###autoload
+(defun wc-initpackages-install (&optional packages-list)
+  (unless packages-list
+    (setq packages-list wc-initpackages-install))
+  (let ((to-install (wc-initpackages-uninstalled packages-list)))
+    (when todo
+      (package-refresh-contents)
+      (dolist (package to-install)
+        (package-install package)))))
+
+;;;###autoload
+(defun wc-initpackages-require-conf (&optional packages-list)
+  "Require configurations for packages in PACKAGES-LIST"
+  (unless packages-list
+    (setq packages-list wc-initpackages-install))
+  (mapcar (lambda (p)
+            (let ((wc-initpackage (concat "wc-init" (symbol-name p))))
+              (when (file-exists-p 
+                     (concat (file-name-as directory wc-initconf) wc-initpackage))
+                (require (make-symbol wc-initpackage)))))
+          (wc-initpackages-list packages-list)))
+
+(provide 'wc-init-packages)
+;;; wc-init-packages.el ends here

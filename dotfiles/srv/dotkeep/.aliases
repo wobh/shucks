@@ -1,0 +1,17 @@
+# -*- mode: sh; -*-
+# Aliases
+
+# Emacs
+
+alias e="$EDITOR -a=''"
+
+
+# Bundler
+
+alias be="bundle exec"
+alias bi="bundle install"
+
+
+# Git
+
+## see ~/.gitconfig

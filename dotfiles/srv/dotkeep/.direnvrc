@@ -1,0 +1,12 @@
+use_ruby() {
+  local ruby_dir=$HOME/.rubies/$1
+  load_prefix $ruby_dir
+  layout ruby
+}
+
+# Layered .envrc configuration:
+# https://github.com/zimbatm/direnv/issues/71
+#
+# source_env ..
+# ...or ...
+# source_up

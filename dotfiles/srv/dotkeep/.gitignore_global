@@ -1,0 +1,34 @@
+# globally ignore the following
+
+# Emacs files
+*~
+\#*#
+.\#*
+
+# OSX desktop
+.DS\_Store
+
+# RVM support
+.ruby-gemset*
+.ruby-version*
+
+# bundler stubs
+bundler_stubs/
+.bundler_stubs/
+.bundle/
+bin/
+
+# tags
+TAGS
+.TAGS
+
+# misc
+.pry_history
+
+# local gemfile
+Gemfile.local
+Gemfile.local.lock
+
+# direnv
+.envrc
+.direnv/

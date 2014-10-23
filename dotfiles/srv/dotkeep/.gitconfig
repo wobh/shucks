@@ -1,0 +1,30 @@
+[branch]
+        autosetuprebase = always
+[rebase]
+        stat = true
+[core]
+        excludesfile = ~/.gitignore_global
+        editor = emacsclient -t -a=\\\"\\\"
+[merge]
+        tool = ediff
+[mergetool "ediff"]
+        cmd = emacsclient -a \"\"  --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+[user]
+        name = William Clifford
+        email = wobh@yahoo.com
+[color]
+        ui = true
+[grep]
+        linenumber = true
+[pull]
+        rebase = true
+[push]
+        default = tracking
+[alias]
+        st = status
+        co = checkout
+        br = branch
+        ci = commit
+
+
+

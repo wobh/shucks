@@ -1,0 +1,35 @@
+# .dotsync
+# list of files to sync with dotsync
+./.aliases
+./.bash_profile
+./.direnvrc
+./.dotenvs
+./.dotlist
+./.editenv
+./.emacs.d/init.el
+./.emacs.d/lisp/conf-packages
+./.emacs.d/lisp/customizations.el
+./.emacs.d/lisp/init-custom.el
+./.emacs.d/lisp/init-darwin.el
+./.emacs.d/lisp/init-display.el
+./.emacs.d/lisp/init-elisp.el
+./.emacs.d/lisp/init-eshell.el
+./.emacs.d/lisp/init-lisp.el
+./.emacs.d/lisp/init-org.el
+./.emacs.d/lisp/init-packages.el
+./.emacs.d/lisp/init-paredit.el
+./.emacs.d/lisp/init-ruby.el
+./.emacs.d/lisp/init-system.el
+./.emacs.d/lisp/init-text.el
+./.emacs.d/lisp/init-windows-nt.el
+./.emacs.d/lisp/xel.el
+./.gitconfig
+./.gitignore_global
+./.mplayer/config
+./.profile
+./.zprofile
+./.zshrc
+./bin/dotsend
+./bin/dotsync
+./foo
+./greeting.txt

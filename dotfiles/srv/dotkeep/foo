@@ -1,0 +1,15 @@
+.aliases
+.bash_profile
+.bashrc
+.bundle
+.dotenvs
+.editrc
+.gitconfig
+.gitignore_global
+.meenv
+.merc
+.orgrc
+.profile
+.zprofile
+.zshrc
+bin

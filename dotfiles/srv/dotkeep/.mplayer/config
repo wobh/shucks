@@ -1,0 +1,6 @@
+[default]
+[novideo]
+vc=null
+vo=null
+autosync=30
+nocorrect-pts=yes
