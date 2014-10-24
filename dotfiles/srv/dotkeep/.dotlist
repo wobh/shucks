@@ -29,7 +29,3 @@
 ./.profile
 ./.zprofile
 ./.zshrc
-./bin/dotsend
-./bin/dotsync
-./foo
-./greeting.txt

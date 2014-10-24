@@ -3,19 +3,15 @@
 # .zshrc is sourced in interactive shells.  It should contain commands
 # to set up aliases, functions, options, key bindings, etc.
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory notify
 bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/Users/wclifford/.zshrc'
+zstyle :compinstall filename "~/.zshrc"
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 # options
 
