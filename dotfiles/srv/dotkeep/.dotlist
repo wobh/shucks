@@ -2,6 +2,7 @@
 # list of files to sync with dotsync
 ./.aliases
 ./.bash_profile
+./.bashrc
 ./.direnvrc
 ./.dotenvs
 ./.dotlist
@@ -19,6 +20,7 @@
 ./.emacs.d/lisp/init-packages.el
 ./.emacs.d/lisp/init-paredit.el
 ./.emacs.d/lisp/init-ruby.el
+./.emacs.d/lisp/init-slime.el
 ./.emacs.d/lisp/init-system.el
 ./.emacs.d/lisp/init-text.el
 ./.emacs.d/lisp/init-windows-nt.el
