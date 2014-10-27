@@ -3,4 +3,4 @@
 
 # Environment for dotsync
 
-DOTKEEP="${HOME}/Sources/shucks/dotfiles/srv/dotkeep"
+DOTKEEP="${HOME}/src/shucks/dotfiles/srv/dotkeep"
