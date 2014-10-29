@@ -1,6 +1,6 @@
 ;;; init-display.el --- configurations for Emacs display
 
-;;; display options
+;; display options
 (global-font-lock-mode t)  ; syntax highlighting everywhere
 (show-paren-mode t)        ; match parens
 
@@ -19,7 +19,7 @@
   (tooltip-mode nil))
 
 
-;;; color theme
+;; color theme
 ;; (add-to-list 'custom-theme-load-path 
 ;; 	     (concat
 ;; 	      (file-name-as-directory user-emacs-directory) "misc"))
@@ -32,6 +32,10 @@
 
 ;; mode-line
 (column-number-mode t)
+
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
+;;(uniquify-strip-common-suffix t)
 
 ;;<<init-faces>>
 
