@@ -41,7 +41,7 @@
 
 ;; setup rest
 (require 'init-display)
-(require 'lisp)
+(require 'init-lisp)
 (require 'init-elisp)
 (require 'init-eshell)
 (require 'init-ruby)
