@@ -11,12 +11,12 @@
 
 
 ;; frame ornaments
-(menu-bar-mode nil)    ; hide menu bar
-(scroll-bar-mode nil)  ; hide scroll bars
-(tool-bar-mode nil)    ; hide tool bars
+(menu-bar-mode -1)    ; hide menu bar
+(scroll-bar-mode -1)  ; hide scroll bars
+(tool-bar-mode -1)    ; hide tool bars
 
 (when window-system
-  (tooltip-mode nil))
+  (tooltip-mode -1))
 
 
 ;; color theme
