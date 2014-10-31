@@ -8,7 +8,7 @@
       (list
        (list 'clisp (list "clisp" "-K full" "-I" "-ansi"))))
 
-(setq inferior-lisp-program "clisp -I")
+(setq inferior-lisp-program "clisp -I -ansi")
 
 (add-hook 'lisp-mode-hook
           (lambda ()

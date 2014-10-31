@@ -3,7 +3,7 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (add-hook 'text-mode-hook 'visual-line-mode t)
 
-(setq sentence-end-double-space nil)
+(setq sentence-end-double-space -1)
 (setq require-final-newline t)
 
 ;; coding systems
