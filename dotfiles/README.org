@@ -22,7 +22,7 @@ directory with an archive under source control.
 
 * dotfile management
 
-The system is primitive, relying on just two shell scripts, and two
+The system is primitive, relying on just three shell scripts, and two
 configuration files, and one folder.
 
 ** global variables
@@ -95,6 +95,27 @@ argument must have a =.dotenvs= in it.
 = =~/bin$ dotsync ~=
 = =~/foo$ dotsync -t ~/dottest .=
 
+*** =cmd/dotdiff.sh=
+
+Installed as =~/bin/dotdiff=, it accepts either a file or a directory
+for an argument. If given a single file, it checks the file against
+it's copy in =$DOTKEEP= or a provided target directory and prints
+differences. If given a directory it checks all the files in the
+directory's =.dotlist= against their copies in =$DOTKEEP= or a
+provided target directory and prints differences.
+
+**** Usage notes
+
+- option may be given no more than once
+- currently accepts one argument
+- with no arguments, =dotdiff= prints a help message
+
+**** Example uses
+
+- =~$ dotdiff .bashrc=
+- =~$ dotdiff .=
+- =~$ dotdiff -t altvault $HOME=
+
 * Known bugs and faults
 
 ** duplicated error texts in scripts
@@ -116,3 +137,7 @@ archives, and =rsync= seems to have to think more when having to read
 the =~/.dotlist=.
 
 As of right now, =dotsync= seems to work!
+
+** =dotdiff= currently only accepts one argument
+
+It would be nice if it could check multiple arguments.
