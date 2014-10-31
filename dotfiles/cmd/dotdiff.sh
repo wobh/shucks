@@ -20,8 +20,8 @@ DOTVERSION="0.0.1"
 
 ! read -d '' HELPTEXT <<"EOF"
 dotdiff, version %s
-USAGE: dotdiff [options] [FILES] ...
-       dotsend [-t TARGET] [FILES] ...
+USAGE: dotdiff [options] [FILE]
+       dotsend [-t TARGET] [FILE]
 
 Show differences between files or directory to dotfile archive,
 default $DOTKEEP.
@@ -31,6 +31,12 @@ Configure environment in \`\$HOME/.dotenvs'.
 OPTIONS
 
 -t Target directory argument overrides \`\$DOTKEEP'
+
+NOTES
+
+For now \`dotdiff' only takes one argument which may be a directory
+which has a \`.dotlist' or a file which is anticipated to be in
+\`\$DOTKEEP'.
 
 EOF
 
@@ -57,6 +63,7 @@ NOTWITHOPT="May not use this option with %s"
 
 DOTHEAD="# .dotsync\n# list of files to sync with dotsync\n"
 
+DIFFFILE="%s:\n"
 
 # Options
 
@@ -86,14 +93,30 @@ while getopts "t:" opt; do
     esac
 done
 
-DOTLIST="$(pwd)/.dotlist"
+assert_dotlist () {
+    if [[ -f "${DOTLIST}" ]]
+    then
+	true
+    else
+	printf "${BADFILE}\n${NODOTLIST}" "${DOTLIST}" >&2
+	exit 1
+    fi
+}
 
-if [[ -f "${DOTLIST}" ]]
+DOTARGS="${1}"
+# FIXME: someday maybe deal with a list of files and directories.
+
+if [[ -z "${DOTARGS}" ]]
 then
-    true
-else
-    printf "${BADFILE}\n${NODOTLIST}" "${DOTLIST}" >&2
+    printf "${HELPTEXT}" "${DOTVERSION}" >&2
     exit 1
+fi
+
+if [[ -d "${DOTARGS}" ]]
+then
+    DOTLIST="${DOTARGS}/.dotlist"
+    assert_dotlist
+    DOTARGS=$(sed '/^\#/d' "${DOTLIST}")
 fi
 
 source "${HOME}/.dotenvs"
@@ -114,16 +137,21 @@ else
     exit 1
 fi
 
-# Actions
-
 CMDOPTS="-u"
 
 
+# Actions
 
-for FILE in "${@}"
+for FILEPATH in $DOTARGS
 do
-    DOTDIFF="diff ${CMDOPTS} ${FILE} ${TARGET}/${FILE}"     
-    eval "${DOTSEND}"
+    FILENAME="${FILEPATH##./}"
+    DESTPATH="${TARGET}/${FILENAME}"
+    if [[ "${FILEPATH}" -nt "${DESTPATH}" ]] # || [[ -N "${FILEPATH}" ]]
+    then
+	DOTDIFF="diff ${CMDOPTS} ${FILEPATH} ${DESTPATH}"
+	printf "${DIFFFILE}" "${FILEPATH}"
+	eval "${DOTDIFF}"
+    fi
 done
 
 exit
