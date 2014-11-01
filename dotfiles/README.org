@@ -8,10 +8,10 @@
 * Introduction
 
 Everyone comes up with their own way to try to preserve and reproduce
-the environment settings. Here's my attempt to do that. 
+the environment settings. Here's my attempt. 
 
 As with all projects in this repo, it's provisional and
-experimental. It's only use is a cautionary example.
+experimental. It might be best used as a cautionary example.
 
 * Design considerations
 
@@ -20,7 +20,11 @@ and developed. They are effectively iterated over, tested, and
 expanded every day. I want a system that synchronizes files in my home
 directory with an archive under source control.
 
-* dotfile management
+The home directory is where the scripts and configurations themselves
+live. The scripts are installed in =~/bin=. The configuration files
+are dotfiles.
+
+* Dotfile management
 
 The system is primitive, relying on just three shell scripts, and two
 configuration files, and one folder.
@@ -67,7 +71,7 @@ files into the =$DOTKEEP= archive, and updates =~/.dotlist= with the
 
 **** Usage notes
 
-- options may not be given no more than once
+- options may be given no more than once
 - options =-f= and =-r= cannot be used together
 - =-r= does not take file arguments, although it should work with =-t=
 - otherwise, with no arguments, =dotsend= prints a help message
@@ -121,8 +125,8 @@ provided target directory and prints differences.
 ** duplicated error texts in scripts
 
 I couldn't think of a good way to share the error texts, while
-focusing on a basic install, so they're copy-pasted between the two
-scripts.
+focusing on a basic home directory install, so they're copy-pasted
+between the scripts.
 
 ** =dotsend= is slow
 
@@ -130,14 +134,11 @@ scripts.
 somewhere below the current directory. It uses =find= again to update
 =~/.dotlist=.
 
-** =dotsync= slow
-
-=dotsync= uses =rsync= even for making updates to local =$DOTKEEP=
-archives, and =rsync= seems to have to think more when having to read
-the =~/.dotlist=.
-
-As of right now, =dotsync= seems to work!
-
 ** =dotdiff= currently only accepts one argument
 
 It would be nice if it could check multiple arguments.
+
+** =dotsync=
+
+=dotsync= uses =rsync= even for making updates to local =$DOTKEEP=
+archives. So far it's working pretty well.
