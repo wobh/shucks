@@ -8,7 +8,7 @@
 * Introduction
 
 Everyone comes up with their own way to try to preserve and reproduce
-the environment settings. Here's my attempt. 
+the environment settings. Here's my attempt.
 
 As with all projects in this repo, it's provisional and
 experimental. It might be best used as a cautionary example.
@@ -21,8 +21,8 @@ expanded every day. I want a system that synchronizes files in my home
 directory with an archive under source control.
 
 The home directory is where the scripts and configurations themselves
-live. The scripts are installed in =~/bin=. The configuration files
-are dotfiles.
+live. The so these scripts are written to be installed in =~/bin=. The
+configuration files are dotfiles in my $HOME.
 
 * Dotfile management
 
@@ -42,13 +42,13 @@ archived. It is defined in =~/.dotenvs= and defaults to =~/dotfiles=.
 
 
 Installed as =~/.dotenvs=, it defines =DOTKEEP=, the sole global
-variable for this project. It is sourced by the two scripts.
+variable for this project. It is sourced by the the scripts.
 
 *** =etc/dotlist=
 
 Installed as =~/.dotlist=, it is a manifest of files in the =$DOTKEEP=
-archive. It is used by =dotsync= to select only those files which have
-to be managed. It is updated by =dotsend=.
+archive. It is used by =dotsync= and =dotdiff= to select only those
+files which have to be managed. It is updated by =dotsend=.
 
 ** scripts
 
@@ -142,3 +142,28 @@ It would be nice if it could check multiple arguments.
 
 =dotsync= uses =rsync= even for making updates to local =$DOTKEEP=
 archives. So far it's working pretty well.
+* Future
+I'm going to try using this for a while to see how I like it. If it
+seems like it's okay, I'll investigate reimplementing it and forging
+a new project, with the working title of "Homemaker".
+
+* References
+** github dotfiles
+Github keeps a bunch of links to great dotfile examples and resources here:
+
+- http://dotfiles.github.io/
+
+** thoughtbot rcm
+Somehow I overlooked this in my other research for this
+project. It's a different approach, but obviously put together by
+people more competant for the task.
+
+- https://github.com/thoughtbot/rcm
+
+** Kitchenplan
+
+- https://github.com/kitchenplan/kitchenplan
+
+** Boxen
+
+- https://github.com/boxen/boxen
