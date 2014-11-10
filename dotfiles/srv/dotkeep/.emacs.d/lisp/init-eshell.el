@@ -1,5 +1,8 @@
 ;;; init-eshell.el --- configure Emacs Eshell
 
+;;; http://www.masteringemacs.org/article/complete-guide-mastering-eshell
+
+
 (add-hook 'eshell-mode-hook (lambda () (setenv "TERM" "emacs")))
 
 ;;;###autoload

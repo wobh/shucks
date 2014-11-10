@@ -10,7 +10,7 @@ alias e="$EDITOR -a=''"
 
 alias be="bundle exec"
 alias bi="bundle install"
-
+alias bc="bundle config"
 
 # Git
 
