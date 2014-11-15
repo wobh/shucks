@@ -5,8 +5,7 @@
 (setq slime-net-coding-system 'utf-8-unix)
 
 (setq slime-lisp-implementations
-      (list
-       (list 'clisp (list "clisp" "-K full" "-I" "-ansi"))))
+      (list (list 'clisp (list "clisp" "-I" "-ansi"))))
 
 (setq inferior-lisp-program "clisp -I -ansi")
 
