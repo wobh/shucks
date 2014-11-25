@@ -24,7 +24,7 @@
 	     (concat
 	      (file-name-as-directory user-emacs-directory) "misc"))
 
-(when ((eq system-type 'windows-nt) (display-graphic-p))
+(when (and (eq system-type 'windows-nt) (display-graphic-p))
   (load-theme 'zenburn))
 (when (and (eq system-type 'darwin) (display-graphic-p))
   (load-theme 'base16-eighties))
