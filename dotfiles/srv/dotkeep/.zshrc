@@ -13,6 +13,9 @@ zstyle :compinstall filename "~/.zshrc"
 autoload -Uz compinit
 compinit
 
+autoload -U select-word-style
+select-word-style bash
+
 # options
 
 setopt nobeep extendedglob badpattern nomatch

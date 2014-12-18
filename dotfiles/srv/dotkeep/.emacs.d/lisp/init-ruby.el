@@ -16,6 +16,12 @@
   (ruby-mode)
   (switch-to-buffer-other-window name))
 
+(defun outline-ruby ()
+  "Use `occur' to generate an outline of a Ruby file"
+  (let ((matches '("module " "class " "def " "alias_method " "Object.new"
+                   "private" "protected" "public")))
+    (occur (mapconcat 'identity matches "\|"))))
+
 (defun init-ruby-mode ()
   (setq comint-process-echoes t)
   (setq ruby-deep-indent-paren-style nil)
