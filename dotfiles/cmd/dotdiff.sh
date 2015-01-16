@@ -69,37 +69,37 @@ DIFFFILE="%s:\n"
 
 while getopts "t:" opt; do
     case "${opt}" in
-	t)
-	    if [[ -n "${TARGET}" ]]
-	    then 
-		printf "${DUPOPT}" "${OPTARG}" >&2
-		printf "${HELPTEXT}" "${DOTVERSION}"
-		exit 1
-	    else
-		TARGET="${OPTARG}"
-		shift
-	    fi
-	    ;;
-	\?)
-	    printf "${BADOPT}" "${OPTARG}" >&2
-	    printf "${HELPTEXT}" "${DOTVERSION}"
-	    exit 1
-	    ;;
-	:)
-	    printf "${BADARG}" "${OPTARG}" >&2
-	    printf "${HELPTEXT}" "${DOTVERSION}"
-	    exit 1
-	    ;;
+  t)
+      if [[ -n "${TARGET}" ]]
+      then 
+    printf "${DUPOPT}" "${OPTARG}" >&2
+    printf "${HELPTEXT}" "${DOTVERSION}"
+    exit 1
+      else
+    TARGET="${OPTARG}"
+    shift
+      fi
+      ;;
+  \?)
+      printf "${BADOPT}" "${OPTARG}" >&2
+      printf "${HELPTEXT}" "${DOTVERSION}"
+      exit 1
+      ;;
+  :)
+      printf "${BADARG}" "${OPTARG}" >&2
+      printf "${HELPTEXT}" "${DOTVERSION}"
+      exit 1
+      ;;
     esac
 done
 
 assert_dotlist () {
     if [[ -f "${DOTLIST}" ]]
     then
-	true
+  true
     else
-	printf "${BADFILE}\n${NODOTLIST}" "${DOTLIST}" >&2
-	exit 1
+  printf "${BADFILE}\n${NODOTLIST}" "${DOTLIST}" >&2
+  exit 1
     fi
 }
 
@@ -148,9 +148,9 @@ do
     DESTPATH="${TARGET}/${FILENAME}"
     if [[ "${FILEPATH}" -nt "${DESTPATH}" ]] # || [[ -N "${FILEPATH}" ]]
     then
-	DOTDIFF="diff ${CMDOPTS} ${FILEPATH} ${DESTPATH}"
-	printf "${DIFFFILE}" "${FILEPATH}"
-	eval "${DOTDIFF}"
+        DOTDIFF="diff ${CMDOPTS} ${DESTPATH} ${FILEPATH}"
+        printf "${DIFFFILE}" "${FILEPATH}"
+        eval "${DOTDIFF}"
     fi
 done
 
