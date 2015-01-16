@@ -7,20 +7,28 @@
 (add-to-list 'auto-mode-alist '("\\.gemspec" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
 
-(defun get-rubbish-buffer-create (&optional name)
+(defun get-rubbish-buffer-create (&optional uarg name)
   "Setup Ruby scratch buffer in Ruby interactive mode"
-  (unless name
-    (setq name "*rubbish*"))
+  (interactive
+   (let ((default-buffer-name "*rubbish*"))
+     (setf name
+           (if uarg
+               (read-string "rubbish buffer name:"
+                            nil default-buffer-name)
+             default-buffer-name))))
   (get-buffer-create name)
   (set-buffer name)
   (ruby-mode)
+  (inf-ruby-minor-mode)
   (switch-to-buffer-other-window name))
 
 (defun outline-ruby ()
   "Use `occur' to generate an outline of a Ruby file"
-  (let ((matches '("module " "class " "def " "alias_method " "Object.new"
+  (interactive)
+  (let ((matches '("module " "class " "def "
+                   "alias_method " "Object.new"
                    "private" "protected" "public")))
-    (occur (mapconcat 'identity matches "\|"))))
+    (occur (mapconcat 'identity matches "\\|"))))
 
 (defun init-ruby-mode ()
   (setq comint-process-echoes t)
