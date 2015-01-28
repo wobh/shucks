@@ -6,6 +6,7 @@
 
 (setq slime-lisp-implementations
       (list (list 'clisp (list "clisp" "-I" "-ansi"))
+            (list 'sbcl (list "sbcl" "--noinform"))
             (list 'ccl (list "ccl64" "-K" "utf-8"))))
 
 ;;(setq inferior-lisp-program "clisp -I -ansi")

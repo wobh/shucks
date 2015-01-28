@@ -27,7 +27,9 @@
 ./.emacs.d/lisp/xel.el
 ./.gitconfig
 ./.gitignore_global
+./.lein/profiles.clj
 ./.mplayer/config
+./.organization
 ./.profile
 ./.zprofile
 ./.zshrc

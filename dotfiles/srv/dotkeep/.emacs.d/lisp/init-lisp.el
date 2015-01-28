@@ -22,6 +22,19 @@
  :ignore-case t
  :doc-spec '(("(ansicl)Symbol Index" nil nil nil)))
 
+(defun get-slob-buffer-create (&optional uarg name)
+  "Setup Lisp scratch buffer."
+  (interactive
+   (let ((default-buffer-name "*slob*"))
+     (setf name
+           (if uarg
+               (read-string "slob buffer name:"
+                            nil default-buffer-name)
+             default-buffer-name))))
+  (get-buffer-create name)
+  (set-buffer name)
+  (lisp-mode)
+  (switch-to-buffer-other-window name))
 
 (require 'init-paredit)
 
