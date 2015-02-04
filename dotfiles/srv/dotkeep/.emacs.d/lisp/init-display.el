@@ -20,14 +20,15 @@
 
 
 ;; color theme
-(add-to-list 'custom-theme-load-path 
-	     (concat
-	      (file-name-as-directory user-emacs-directory) "misc"))
 
-(when (and (eq system-type 'windows-nt) (display-graphic-p))
-  (load-theme 'zenburn))
-(when (and (eq system-type 'darwin) (display-graphic-p))
-  (load-theme 'base16-eighties))
+(add-to-list 'custom-theme-load-path
+	     (concat emacs-misc-directory "base16-emacs"))
+
+;; (cond
+;;  ((and (eq system-type 'windows-nt) (display-graphic-p))
+;;   (load-theme 'zenburn))
+;;  ((eq system-type 'darwin)
+;;   (load-theme 'base16-eighties)))
 
 
 ;; mode-line

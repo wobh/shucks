@@ -25,6 +25,15 @@
 
 (add-to-list 'load-path user-elisp-directory)
 
+(defvar emacs-misc-directory
+  (expand-file-name
+   (concat
+    (file-name-as-directory user-emacs-directory)
+    (file-name-as-directory "misc")))
+  "Directory of miscellany.")
+
+(add-to-list 'load-path emacs-misc-directory)
+
 
 ;; general requirements
 (require 'autoload)
@@ -41,11 +50,13 @@
 
 ;; setup rest
 (require 'init-display)
+(require 'init-smartparens)
 (require 'init-lisp)
 (require 'init-elisp)
 (require 'init-eshell)
 (require 'init-ruby)
 (require 'init-text)
+
 
 
 ;; setup last

@@ -3,7 +3,7 @@
 
 # Emacs
 
-alias e="$EDITOR -a=''"
+alias e="emacsclient -t -a=\"\""
 
 
 # Bundler

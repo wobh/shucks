@@ -23,9 +23,8 @@ setopt nobeep extendedglob badpattern nomatch
 
 # Sources
 
-source "$HOME/.editenv"
-source "$HOME/.aliases"
-
+source "${HOME}/.editors"
+source "${HOME}/.aliases"
 
 # Prompt
 

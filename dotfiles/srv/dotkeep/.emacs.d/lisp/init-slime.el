@@ -19,7 +19,7 @@
 (defun turn-on-slime ()
   (slime-mode t))
 
-(require 'slime-autoloads)
+;;(require 'slime-autoloads nil 'noerror)
 
 (eval-after-load "slime"
   '(progn

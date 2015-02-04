@@ -8,14 +8,17 @@
 
 # Sources
 
-source "$HOME/.editenv"
-source "$HOME/.aliases"
+source "${HOME}/.editors"
+source "${HOME}/.aliases"
 
 
 # Prompt
 
-PS1="\w\$ "
+export PS1="\w\$ "
 
+# Title
+
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
 # Direnv
 
