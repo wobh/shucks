@@ -16,7 +16,8 @@
 (tool-bar-mode -1)    ; hide tool bars
 
 (when window-system
-  (tooltip-mode -1))
+  (tooltip-mode -1)
+  (fringe-mode 0))
 
 
 ;; color theme

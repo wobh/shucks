@@ -15,7 +15,8 @@
 [color]
         ui = true
 [grep]
-        linenumber = true
+        lineNumber = true
+        fullName = true
 [pull]
         rebase = true
 [push]

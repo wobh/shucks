@@ -5,9 +5,10 @@
 (setq slime-net-coding-system 'utf-8-unix)
 
 (setq slime-lisp-implementations
-      (list (list 'clisp (list "clisp" "-I" "-ansi"))
-            (list 'sbcl (list "sbcl" "--noinform"))
-            (list 'ccl (list "ccl64" "-K" "utf-8"))))
+     '((sbcl ("~/.cim/bin/sbcl"))
+       (clisp ("~/.cim/bin/clisp"))
+       (ccl ("~/.cim/bin/ccl"))
+       (ecl ("~/.cim/bin/ecl"))))
 
 ;;(setq inferior-lisp-program "clisp -I -ansi")
 

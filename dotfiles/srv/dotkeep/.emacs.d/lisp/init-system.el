@@ -1,10 +1,10 @@
 ;;; init-system.el --- configure Emacs general system settings.
 
 (when system-type
-  (let* ((sys-conf-name (concat "init-" system-type))
-         (sys-conf-file (locate-user-emacs-file sys-conf-name)))
-    (when sys-conf-file
-      (load-library sys-conf-file))))
+  (let* ((sys-conf-name (concat "init-" (symbol-name system-type)))
+         (sys-conf-file (concat user-elisp-directory sys-conf-name ".el")))
+    (when (file-readable-p sys-conf-file)
+      (load-library sys-conf-name))))
 
 
 

@@ -6,7 +6,7 @@
 ./.direnvrc
 ./.dotenvs
 ./.dotlist
-./.editenv
+./.editors
 ./.emacs.d/init.el
 ./.emacs.d/lisp/conf-packages
 ./.emacs.d/lisp/customizations.el
@@ -27,7 +27,6 @@
 ./.emacs.d/lisp/xel.el
 ./.gitconfig
 ./.gitignore_global
-./.lein/profiles.clj
 ./.mplayer/config
 ./.organization
 ./.profile

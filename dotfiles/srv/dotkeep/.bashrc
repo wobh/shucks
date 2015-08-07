@@ -23,3 +23,6 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 # Direnv
 
 eval "$(direnv hook bash)"
+
+# CIM
+CIM_HOME="${HOME}/.cim"; [ -s "$CIM_HOME/init.sh" ] && . "$CIM_HOME/init.sh"

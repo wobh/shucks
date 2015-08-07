@@ -1,10 +1,9 @@
 ;; -*- mode: emacs-lisp; -*-
 ;;; init-darwin.el --- Configure Emacs on Darwin
 
-(when (string-equal system-type "darwin")
-       (setq launch-sys-clisp 
-	     (list "clisp" ""))
-       )
+(when (or (memq window-system '(mac ns))
+	  (and (daemonp) (eq system-type 'darwin)))
+  (exec-path-from-shell-initialize))
 
 (provide 'init-darwin)
 ;;; ~/.emacs.d/init-darwin.el ends here

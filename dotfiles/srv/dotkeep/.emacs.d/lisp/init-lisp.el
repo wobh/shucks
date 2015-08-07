@@ -3,10 +3,16 @@
 (define-key lisp-mode-shared-map (kbd "RET") 
   'reindent-then-newline-and-indent)
 
+(defun setup-lisp-indent-function ()
+  (set (make-local-variable 'lisp-indent-function)
+       'common-lisp-indent-function))
+
+(defun setup-lisp-indent-tabs (&optional tabs)
+  (setq indent-tabs-mode (not (not tabs))))
+
 (add-hook 'lisp-mode-hook
-          (lambda ()
-            (set (make-local-variable 'lisp-indent-function)
-                 'common-lisp-indent-function)))
+	  'setup-lisp-indent-function
+	  'setup-lisp-indent-tabs)
 
 (add-to-list 'auto-mode-alist '("\\.cl" . lisp-mode))
 
@@ -22,23 +28,21 @@
  :ignore-case t
  :doc-spec '(("(ansicl)Symbol Index" nil nil nil)))
 
-(defun get-slob-buffer-create (&optional uarg name)
-  "Setup Lisp scratch buffer."
-  (interactive
-   (let ((default-buffer-name "*slob*"))
-     (setf name
-           (if uarg
-               (read-string "slob buffer name:"
-                            nil default-buffer-name)
-             default-buffer-name))))
-  (get-buffer-create name)
-  (set-buffer name)
-  (lisp-mode)
-  (switch-to-buffer-other-window name))
 
 (require 'init-paredit)
 
 (add-hook 'lisp-mode-hook 'turn-on-paredit)
+
+;; misc
+
+(defun get-clunk-buffer-create ()
+  (interactive )
+  (let ((name "*clunk*"))
+    (get-buffer-create name)
+    (set-buffer name)
+    (lisp-mode)
+    (setup-lisp-indent-tabs t)
+    (switch-to-buffer-other-window name)))
 
 (provide 'init-lisp)
 ;;; init-lisp.el ends here

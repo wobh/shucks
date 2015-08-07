@@ -13,5 +13,8 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; ispell
+(setq ispell-program-name "/usr/local/bin/aspell")
+
 (provide 'init-text)
 ;;; init-text.el ends here

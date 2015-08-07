@@ -1,12 +1,34 @@
 ;;; init-org.el --- configure emacs org-mode
 
+(setq org-directory "~/Documents/org")
+
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+
+;; setup org-capture
+
 (global-set-key "\C-cc" 'org-capture)
+(setq org-default-notes-file
+      (expand-file-name "notes.org"
+			(file-name-as-directory org-directory)))
 
-(setq org-export-backends '(ascii html icalendar latex md odt))
+
+;; setup export
 
+(setq org-export-dispatch-use-expert-ui t)
+(setq org-export-backends '(ascii html icalendar latex md odt confluence))
+
+
+;; setup hooks
+(add-hook 'org-mode-hook '(lambda () (toggle-truncate-lines 1)))
+
+
+;; setup plantuml jar path
+
+(setq org-plantuml-jar-path
+      (setq plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")))
 
 
 ;; tangle code when TODO property is done state

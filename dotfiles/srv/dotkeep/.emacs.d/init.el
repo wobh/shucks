@@ -44,19 +44,20 @@
 ;; setup first
 (require 'init-packages)
 (require 'init-custom)
-;; (require 'init-system)
+(require 'init-system)
 ;; (require 'init-features)
 
 
 ;; setup rest
 (require 'init-display)
-(require 'init-smartparens)
+(require 'init-eshell)
+(require 'init-org)
 (require 'init-lisp)
 (require 'init-elisp)
-(require 'init-eshell)
+(require 'init-smartparens)
 (require 'init-ruby)
 (require 'init-text)
-
+(require 'init-occur)
 
 
 ;; setup last
