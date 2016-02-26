@@ -51,6 +51,7 @@
 ;; setup rest
 (require 'init-display)
 (require 'init-eshell)
+(require 'init-comint)
 (require 'init-org)
 (require 'init-lisp)
 (require 'init-elisp)
@@ -64,3 +65,4 @@
 (init-custom-load)
 
 ;;; ~/.emacs.d/init.el ends here
+(put 'set-goal-column 'disabled nil)

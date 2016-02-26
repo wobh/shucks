@@ -4,7 +4,7 @@
 (global-font-lock-mode t)  ; syntax highlighting everywhere
 (show-paren-mode t)        ; match parens
 
-(setq visible-bell t)                 ; disable visual beep
+(setq ring-bell-function 'ignore)     ; disable bell and visible-bell
 (setq scroll-conservatively 101)      ; scroll only enough to reveal cursor
 
 (put 'narrow-to-region 'disabled nil) ; use narrow-to-region
@@ -21,7 +21,6 @@
 
 
 ;; color theme
-
 (add-to-list 'custom-theme-load-path
 	     (concat emacs-misc-directory "base16-emacs"))
 
@@ -34,6 +33,9 @@
 
 ;; mode-line
 (column-number-mode t)
+
+(display-time-mode t)
+(setq display-time-24hr-format t)
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)

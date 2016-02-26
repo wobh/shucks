@@ -3,7 +3,7 @@
 # .zshrc is sourced in interactive shells.  It should contain commands
 # to set up aliases, functions, options, key bindings, etc.
 
-HISTFILE=~/.histfile
+HISTFILE=~/.zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory notify
@@ -53,3 +53,10 @@ chpwd () { echo -ne "\e]1;$(print -Pn '%1d')\a" }
 ## direnv
 
 eval "$(direnv hook zsh)"
+
+## rbenv
+
+eval "$(rbenv init -)"
+
+# added by travis gem
+[ -f /Users/wclifford/.travis/travis.sh ] && source /Users/wclifford/.travis/travis.sh

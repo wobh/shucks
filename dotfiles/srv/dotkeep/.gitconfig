@@ -5,18 +5,16 @@
 [core]
         excludesfile = ~/.gitignore_global
         editor = emacsclient -t -a=\\\"\\\"
+	pager = less -F -X
 [merge]
         tool = ediff
 [mergetool "ediff"]
         cmd = emacsclient -a \"\"  --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
-[user]
-        name = William Clifford
-        email = wobh@yahoo.com
 [color]
         ui = true
 [grep]
         lineNumber = true
-        fullName = true
+	fullName = true
 [pull]
         rebase = true
 [push]
@@ -26,6 +24,7 @@
         co = checkout
         br = branch
         ci = commit
+	cp = cherry-pick
 	#TODO: log -p ORIG_HEAD..
 
 

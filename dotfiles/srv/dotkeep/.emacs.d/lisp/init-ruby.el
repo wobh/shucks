@@ -2,20 +2,29 @@
 
 (defun init-ruby-mode ()
   (setq comint-process-echoes t)
+  ;; (setq ruby-use-smie t)
   (setq ruby-deep-indent-paren-style nil)
   (setq ruby-use-encoding-map nil)
   (setq ruby-insert-encoding-magic-comment nil)
   (smartparens-mode)
+  ;; TODO: deprecate? https://www.masteringemacs.org/article/whats-new-emacs-24-3#ruby-mode
   (define-key ruby-mode-map (kbd "RET")
-    'reindent-then-newline-and-indent))
+    'reindent-then-newline-and-indent)
+  )
 
 (add-hook 'ruby-mode-hook 'init-ruby-mode)
+
+;; NOPE: try
+;;(add-hook 'ruby-mode-hook 'electric-indent-mode)
 
 ;;; Enhanced Ruby
 
 (defun init-enh-ruby-mode ()
   (smartparens-mode)
-  (setq enh-ruby-bounce-deep-indent t))
+  (setq enh-ruby-bounce-deep-indent t)
+  ;; (setq enh-ruby-use-encoding-map nil)
+  ;; (setq enh-ruby-use-ruby-mode-show-parens-config t)
+  )
 
 (add-hook 'enh-ruby-mode-hook 'init-enh-ruby-mode)
 
@@ -42,21 +51,59 @@
     (inf-ruby-minor-mode)
     (switch-to-buffer-other-window name)))
 
-(defun outline-ruby ()
-  "Use `occur' to generate an outline of a Ruby file"
-  (interactive)
-  (let ((matches '("module " "class " "def "
-                   "alias_method " "Object.new"
-                   "private" "protected" "public")))
-    (occur (mapconcat 'identity matches "\\|"))))
+(defvar init-ruby-outline-matches
+  '("module " "class " "def "
+    "alias_method " "Object.new"
+    "private" "protected" "public"
+    "attr_accessor" "attr_writer" "attr_reader"))
 
-(defun outline-rspec ()
-  "Use `occur' to generate an outline of an RSpec file"
-  (interactive)
-  (let ((matches '("describe" "context" "it"
-		   "before" "after"
-		   "subject" "let")))
-    (occur (mapconcat 'identity matches "\\|"))))
+;; TODO: find list of standard/common railsisms
+(defvar init-ruby-outline-matches-rails
+  (append init-ruby-outline-matches
+	  '("attr_accessible" "attr_writable" "attr_readable")))
+
+(defvar init-ruby-outline-matches-rspec
+  (append init-ruby-outline-matches
+	  '("describe" "context" "it"
+	    "before" "after"
+	    "subject" "let")))
+
+(defvar init-ruby-outline-matches-rake
+  (append init-ruby-outline-matches
+	  '("namespace" "desc" "task" "def" "module" "class" "Rake" "Task")))
+
+(defvar init-ruby-outline-matches-factory-girl
+  (append init-ruby-outline-matches
+	  '("factory" "define" "trait" "transient"
+	    "sequence" "initialize_with")))
+
+(defmacro defoutline (symbol name matches)
+  "Define outliner function"
+  `(defun ,(make-symbol (format "outline-%s" symbol)) ()
+       ,(format "Use `occur' to generate an outline of a Ruby file" name)
+     (interactive)
+     (occur (mapconcat 'identity ,matches "\\|"))))
+
+(pp (macroexpand '(defoutline ruby "Ruby" init-ruby-outline-matches)))
+(defalias 'outline-ruby
+  #'(lambda nil "Use `occur' to generate an outline of a Ruby file"
+      (interactive)
+      (occur
+       (mapconcat 'identity init-ruby-outline-matches "\\|"))))
+"(defalias 'outline-ruby
+  #'(lambda nil \"Use `occur' to generate an outline of a Ruby file\"
+      (interactive)
+      (occur
+       (mapconcat 'identity init-ruby-outline-matches \"\\\\|\"))))
+"
+
+
+
+
+(defoutline rake "Rake" init-ruby-outline-matches-rake)
+(defoutline rspec "RSpec" init-ruby-outline-matches-rspec)
+(defoutline rails "Rails" init-ruby-outline-matches-rails)
+(defoutline factory-girl "Factory Girl" init-ruby-outline-matches-factory-girl)
 
 ;; ruby-dev
 

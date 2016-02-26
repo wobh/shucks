@@ -31,7 +31,7 @@
       (setq plantuml-jar-path (expand-file-name "~/bin/plantuml.jar")))
 
 
-;; tangle code when TODO property is done state
+;; tangle code when TODO property is in done state
 
 (defun tangle-done (file &optional dir)
   (unless dir

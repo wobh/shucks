@@ -10,9 +10,8 @@
 (defun setup-lisp-indent-tabs (&optional tabs)
   (setq indent-tabs-mode (not (not tabs))))
 
-(add-hook 'lisp-mode-hook
-	  'setup-lisp-indent-function
-	  'setup-lisp-indent-tabs)
+(add-hook 'lisp-mode-hook 'setup-lisp-indent-function)
+(add-hook 'lisp-mode-hook 'setup-lisp-indent-tabs)
 
 (add-to-list 'auto-mode-alist '("\\.cl" . lisp-mode))
 

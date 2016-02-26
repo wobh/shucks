@@ -8,7 +8,7 @@
 # Author: William Clifford <wobh@yahoo.com>
 
 
-set -e
+set -eu
 
 
 # Messages
@@ -43,9 +43,6 @@ a path outside of this \`root'.
 
 EOF
 
-TRUE="0"
-FALSE="1"
-
 NILARG="ERROR ${0}: Argument for \`-%s' missing.\n"
 
 BADOPT="ERROR ${0}: Option \`-%s' invalid.\n"
@@ -62,31 +59,29 @@ NODOTLIST="This folder does not have a usable \`.dotlist'.\n"
 
 NOTINPATH="This folder does not have the file below \`\.dotlist'.\n"
 
-NOTWITHOPT="May not use this option with %s"
+NOTWITHOPT="May not use option %s with option %s.\n"
 
 DOTHEAD="# .dotsync\n# list of files to sync with dotsync\n"
 
 
 # Options
 
+TRUE="0"
+FALSE="1"
+
 DOTFORCE="${FALSE}"
 DOTFRESH="${FALSE}"
 
-while getopts "frt:" opt; do
+TARGET=""
+
+while getopts "frt:" opt
+do
     case "${opt}" in
 	f)
 	    DOTFORCE="${TRUE}"
-	    shift
 	    ;;
 	r)
-	    if [[ "${DOTFORCE}" == "${TRUE}" ]]
-	    then
-		printf "${BADOPT}\n$NOTWITHOPT" "${OPTARG}" "-f"
-		exit 1
-	    else
-		DOTFRESH="${TRUE}"
-		shift
-	    fi
+	    DOTFRESH="${TRUE}"
 	    ;;
 	t)
 	    if [[ -n "${TARGET}" ]]
@@ -96,7 +91,6 @@ while getopts "frt:" opt; do
 		exit 1
 	    else
 		TARGET="${OPTARG}"
-		shift
 	    fi
 	    ;;
 	\?)
@@ -111,14 +105,18 @@ while getopts "frt:" opt; do
 	    ;;
     esac
 done
+shift "$((OPTIND-1))"
 
-if [[ -z "${@}" ]]
+if [[ "${DOTFORCE}" == "${TRUE}" && "${DOTFRESH}" == "${TRUE}" ]]
 then
-    if [[ "${DOTFRESH}" != "${TRUE}" ]]
-    then
-	printf "${HELPTEXT}" "${DOTVERSION}"
-	exit 0
-    fi
+    printf "${BADOPT}\n$NOTWITHOPT" "${OPTARG}" "-f" "-r" >&2
+    exit 1
+fi
+
+if [[ -z "${@}" && "${DOTFRESH}" != "${TRUE}" ]]
+then
+    printf "${HELPTEXT}" "${DOTVERSION}"
+    exit 0
 fi
 
 DOTLIST="$(pwd)/.dotlist"

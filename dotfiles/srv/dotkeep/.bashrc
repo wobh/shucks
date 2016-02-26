@@ -16,13 +16,19 @@ source "${HOME}/.aliases"
 
 export PS1="\w\$ "
 
-# Title
+# Window/tab titles
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/}\007"'
 
-# Direnv
+# Hooks
+
+## Direnv
 
 eval "$(direnv hook bash)"
 
-# CIM
-CIM_HOME="${HOME}/.cim"; [ -s "$CIM_HOME/init.sh" ] && . "$CIM_HOME/init.sh"
+## rbenv
+
+eval "$(rbenv init -)"
+
+# added by travis gem
+[ -f /Users/wclifford/.travis/travis.sh ] && source /Users/wclifford/.travis/travis.sh
